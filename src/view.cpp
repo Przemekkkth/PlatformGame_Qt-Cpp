@@ -8,6 +8,4 @@ View::View()
 
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    fitInView(0,0, 500, 500);
 }
