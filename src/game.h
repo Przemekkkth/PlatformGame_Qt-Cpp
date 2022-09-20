@@ -3,6 +3,7 @@
 #include <QString>
 #include <QPixmap>
 #include <QSize>
+#include "heroanim.h"
 
 class Game
 {
@@ -53,6 +54,11 @@ public:
     constexpr static const int FPS = 60;
     static const QString PATH_TO_WOOD_PIXMAP;
     static const QString PATH_TO_ROCK_PIXMAP;
+    static const QString PATH_TO_HERO_PIXMAP;
+
+    constexpr static const int TILE_SIZE = 64;
+
+    HeroAnim m_heroAnim;
 };
 
 #endif // GAME_H

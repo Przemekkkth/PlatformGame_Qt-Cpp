@@ -34,8 +34,8 @@ void GameScene::loop()
 void GameScene::drawTiles()
 {
     // Draw Level
-    int nTileWidth = 32;
-    int nTileHeight = 32;
+    int nTileWidth = Game::TILE_SIZE;
+    int nTileHeight = Game::TILE_SIZE;
     int nVisibleTilesX = Game::RESOLUTION.width() / nTileWidth;
     int nVisibleTilesY = Game::RESOLUTION.height() / nTileHeight;
 
@@ -115,13 +115,15 @@ void GameScene::drawTiles()
     //(fPlayerPosY - fOffsetY) * nTileWidth,
     //(fPlayerPosX - fOffsetX + 1.0f) * nTileWidth,
     //(fPlayerPosY - fOffsetY + 1.0f) * nTileHeight, PIXEL_SOLID, FG_GREEN);
-    QGraphicsRectItem* rItem = new QGraphicsRectItem();
-    rItem->setRect(0,0, ((m_game.fPlayerPosX - fOffsetX + 1.0f) * nTileWidth) - ((m_game.fPlayerPosX - fOffsetX) * nTileWidth),
-                   ((m_game.fPlayerPosY - fOffsetY + 1.0f) * nTileHeight) - ((m_game.fPlayerPosY - fOffsetY) * nTileWidth));
-    rItem->setPos((m_game.fPlayerPosX - fOffsetX) * nTileWidth, (m_game.fPlayerPosY - fOffsetY) * nTileWidth);
-    rItem->setBrush(QBrush(Qt::green));
-    rItem->setPen(QPen(Qt::red));
-    addItem(rItem);
+//    QGraphicsRectItem* rItem = new QGraphicsRectItem();
+//    rItem->setRect(0,0, ((m_game.fPlayerPosX - fOffsetX + 1.0f) * nTileWidth) - ((m_game.fPlayerPosX - fOffsetX) * nTileWidth),
+//                   ((m_game.fPlayerPosY - fOffsetY + 1.0f) * nTileHeight) - ((m_game.fPlayerPosY - fOffsetY) * nTileWidth));
+//    rItem->setPos((m_game.fPlayerPosX - fOffsetX) * nTileWidth, (m_game.fPlayerPosY - fOffsetY) * nTileWidth);
+//    rItem->setBrush(QBrush(Qt::green));
+//    rItem->setPen(QPen(Qt::red));
+    QGraphicsPixmapItem* pItem = new QGraphicsPixmapItem(m_game.m_heroAnim.currentPixmap().scaled(Game::TILE_SIZE, Game::TILE_SIZE));
+    pItem->setPos((m_game.fPlayerPosX - fOffsetX) * nTileWidth, (m_game.fPlayerPosY - fOffsetY) * nTileWidth);
+    addItem(pItem);
 
     //DrawPartialSprite((fPlayerPosX - fOffsetX) * nTileWidth, (fPlayerPosY - fOffsetY) * nTileWidth, spriteMan, nDirModX * nTileWidth, nDirModY * nTileHeight, nTileWidth, nTileHeight);
 }

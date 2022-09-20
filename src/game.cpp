@@ -4,9 +4,10 @@
 //
 const QString Game::PATH_TO_WOOD_PIXMAP = ":/res/wood.png";
 const QString Game::PATH_TO_ROCK_PIXMAP = ":/res/rock.png";
+const QString Game::PATH_TO_HERO_PIXMAP = ":/res/hero.png";
 
 const QString Game::TITLE = "JUMPER";
-const QSize Game::RESOLUTION = QSize(512, 480);
+const QSize Game::RESOLUTION = QSize(1024, 960);
 Game::Game()
     : m_isMoveLeft(false), m_isMoveRight(false), m_isMoveUp(false), m_isMoveDown(false),
       m_isPressedSpace(false)
@@ -108,6 +109,7 @@ bool Game::isMoveLeft()
 void Game::setMoveLeft(bool val)
 {
     m_isMoveLeft = val;
+    m_heroAnim.setMoveLeft(val);
 }
 
 bool Game::isMoveRight()
@@ -118,6 +120,7 @@ bool Game::isMoveRight()
 void Game::setMoveRight(bool val)
 {
     m_isMoveRight = val;
+    m_heroAnim.setMoveRight(val);
 }
 
 bool Game::isMoveUp()
@@ -214,6 +217,7 @@ void Game::update()
     }
 
     bPlayerOnGround = false;
+    m_heroAnim.setJump(false);
     if (fPlayerVelY <= 0) // Moving Up
     {
         if (getTile(fNewPlayerPosX + 0.0f, fNewPlayerPosY) != '.' || getTile(fNewPlayerPosX + 0.9f, fNewPlayerPosY) != '.')
@@ -229,6 +233,7 @@ void Game::update()
             fNewPlayerPosY = (int)fNewPlayerPosY;
             fPlayerVelY = 0;
             bPlayerOnGround = true; // Player has a solid surface underfoot
+            m_heroAnim.setJump(true);
             nDirModX = 0;
         }
     }
