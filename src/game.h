@@ -51,6 +51,8 @@ public:
     bool m_isPressedSpace;
 
     constexpr static const int FPS = 60;
+    static const QString PATH_TO_WOOD_PIXMAP;
+    static const QString PATH_TO_ROCK_PIXMAP;
 };
 
 #endif // GAME_H

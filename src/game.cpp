@@ -1,8 +1,12 @@
 #include "game.h"
 #include <QDebug>
 
+//
+const QString Game::PATH_TO_WOOD_PIXMAP = ":/res/wood.png";
+const QString Game::PATH_TO_ROCK_PIXMAP = ":/res/rock.png";
+
 const QString Game::TITLE = "JUMPER";
-const QSize Game::RESOLUTION = QSize(256, 240);
+const QSize Game::RESOLUTION = QSize(512, 480);
 Game::Game()
     : m_isMoveLeft(false), m_isMoveRight(false), m_isMoveUp(false), m_isMoveDown(false),
       m_isPressedSpace(false)

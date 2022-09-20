@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>res/hero.png</file>
         <file>res/tiles.png</file>
+        <file>res/wood.png</file>
+        <file>res/rock.png</file>
     </qresource>
 </RCC>

@@ -1,6 +1,8 @@
 #include "gamescene.h"
 #include <QGraphicsRectItem>
 #include <QKeyEvent>
+#include <QGraphicsPixmapItem>
+
 GameScene::GameScene(QObject *parent)
     : QGraphicsScene{parent}, m_loopSpeed(int(1000.0f/Game::FPS)), m_loopTime(0.0f), m_deltaTime(0.0f)
 {
@@ -32,8 +34,8 @@ void GameScene::loop()
 void GameScene::drawTiles()
 {
     // Draw Level
-    int nTileWidth = 16;
-    int nTileHeight = 16;
+    int nTileWidth = 32;
+    int nTileHeight = 32;
     int nVisibleTilesX = Game::RESOLUTION.width() / nTileWidth;
     int nVisibleTilesY = Game::RESOLUTION.height() / nTileHeight;
 
@@ -76,17 +78,20 @@ void GameScene::drawTiles()
                 //Fill(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY, (x + 1) * nTileWidth - fTileOffsetX, (y + 1) * nTileHeight - fTileOffsetY, PIXEL_SOLID, FG_RED);
                 //DrawPartialSprite(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY, spriteTiles, 2 * nTileWidth, 0 * nTileHeight, nTileWidth, nTileHeight);
             {
-                QGraphicsRectItem* rItem = new QGraphicsRectItem();
-                //rItem->setRect(0,0, (x + 1) * nTileWidth - fTileOffsetX - x * nTileWidth - fTileOffsetX, (y + 1) * nTileHeight - fTileOffsetY - y * nTileHeight - fTileOffsetY);
-                rItem->setRect(0,0, nTileWidth, nTileHeight);
-                rItem->setPos(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY);
-                rItem->setBrush(QBrush(Qt::red));
-                rItem->setPen(QPen(Qt::red));
-                addItem(rItem);
+                QGraphicsPixmapItem* pItem = new QGraphicsPixmapItem();
+                pItem->setPixmap(QPixmap(Game::PATH_TO_ROCK_PIXMAP).scaled(nTileWidth, nTileHeight));
+                pItem->setPos(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY);
+                addItem(pItem);
             }
                 break;
             case 'G': // Ground Block
                 //DrawPartialSprite(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY, spriteTiles, 0 * nTileWidth, 0 * nTileHeight, nTileWidth, nTileHeight);
+            {
+                QGraphicsPixmapItem* pItem = new QGraphicsPixmapItem();
+                pItem->setPixmap(QPixmap(Game::PATH_TO_WOOD_PIXMAP).scaled(nTileWidth, nTileHeight));
+                pItem->setPos(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY);
+                addItem(pItem);
+            }
                 break;
             case 'B': // Brick Block
                 //DrawPartialSprite(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY, spriteTiles, 0 * nTileWidth, 1 * nTileHeight, nTileWidth, nTileHeight);
