@@ -13,7 +13,7 @@ public:
     QPixmap currentPixmap() const;
     void setMoveRight(bool val);
     void setMoveLeft(bool val);
-    void setJump(bool val);
+    void setIsOnGround(bool val);
 signals:
 
 private slots:
@@ -26,7 +26,7 @@ private:
     int m_currentFrame;
     QPixmap m_pixmap;
     QPixmap m_currentPixmap;
-    bool m_isMoveLeft, m_isMoveRight, m_isJump;
+    bool m_isMoveLeft, m_isMoveRight, m_isOnGround;
     QTimer m_timer;
 };
 

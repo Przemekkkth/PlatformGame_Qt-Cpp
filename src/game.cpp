@@ -217,7 +217,7 @@ void Game::update()
     }
 
     bPlayerOnGround = false;
-    m_heroAnim.setJump(false);
+    m_heroAnim.setIsOnGround(false);
     if (fPlayerVelY <= 0) // Moving Up
     {
         if (getTile(fNewPlayerPosX + 0.0f, fNewPlayerPosY) != '.' || getTile(fNewPlayerPosX + 0.9f, fNewPlayerPosY) != '.')
@@ -233,7 +233,7 @@ void Game::update()
             fNewPlayerPosY = (int)fNewPlayerPosY;
             fPlayerVelY = 0;
             bPlayerOnGround = true; // Player has a solid surface underfoot
-            m_heroAnim.setJump(true);
+            m_heroAnim.setIsOnGround(true);
             nDirModX = 0;
         }
     }
