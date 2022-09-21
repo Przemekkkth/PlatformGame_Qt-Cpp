@@ -7,7 +7,7 @@ const QString Game::PATH_TO_ROCK_PIXMAP = ":/res/rock.png";
 const QString Game::PATH_TO_HERO_PIXMAP = ":/res/hero.png";
 
 const QString Game::TITLE = "JUMPER";
-const QSize Game::RESOLUTION = QSize(1024, 960);
+const QSize Game::RESOLUTION = QSize(1024, 768);
 Game::Game()
     : m_isMoveLeft(false), m_isMoveRight(false), m_isMoveUp(false), m_isMoveDown(false),
       m_isPressedSpace(false)

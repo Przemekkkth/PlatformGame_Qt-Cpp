@@ -7,9 +7,9 @@ HeroAnim::HeroAnim(QObject *parent)
       R_JUMP_P(QPoint(Game::TILE_SIZE, 2*Game::TILE_SIZE)), m_currentFrame(0), m_pixmap(Game::PATH_TO_HERO_PIXMAP),
       m_isMoveLeft(false), m_isMoveRight(false), m_isJump(false)
 {
-    m_currentPixmap = m_pixmap.copy(0,0, Game::TILE_SIZE, Game::TILE_SIZE);
+    m_currentPixmap = m_pixmap.copy(0,0, Game::TILE_SIZE, Game::TILE_SIZE).scaled(64, 64);
     connect(&m_timer, &QTimer::timeout, this, &HeroAnim::updatePixmap);
-    m_timer.start(500);
+    m_timer.start(250);
 }
 
 QPixmap HeroAnim::currentPixmap() const
@@ -36,7 +36,14 @@ void HeroAnim::setJump(bool val)
 
 void HeroAnim::updatePixmap()
 {
-    if(!m_isJump && !m_isMoveRight)
+    if(!m_isJump && m_isMoveRight)
+    {
+        m_currentPixmap = m_pixmap.copy( L_JUMP_P.x(), L_JUMP_P.y(),
+                                       Game::TILE_SIZE, Game::TILE_SIZE);
+        m_currentFrame = 0;
+        return;
+    }
+    else if(!m_isJump && m_isMoveLeft)
     {
         m_currentPixmap = m_pixmap.copy( R_JUMP_P.x(), R_JUMP_P.y(),
                                        Game::TILE_SIZE, Game::TILE_SIZE);
