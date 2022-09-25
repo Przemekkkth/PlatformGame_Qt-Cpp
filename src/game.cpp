@@ -10,7 +10,7 @@ const QString Game::PATH_TO_BOX_PIXMAP = ":/res/box.png";
 const QString Game::PATH_TO_QUESTION_MARK_PIXMAP = ":/res/question_mark.png";
 
 const QString Game::TITLE = "JUMPER";
-const QSize Game::RESOLUTION = QSize(1024, 768);
+const QSize Game::RESOLUTION = QSize(1366, 768);
 Game::Game()
     : m_isMoveLeft(false), m_isMoveRight(false), m_isMoveUp(false), m_isMoveDown(false),
       m_isPressedSpace(false)

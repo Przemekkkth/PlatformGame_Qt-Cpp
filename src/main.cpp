@@ -4,6 +4,7 @@ int main(int argc, char **argv)
 {
     QApplication a(argc, argv);
     View v;
-    v.show();
+    v.showFullScreen();
+    qDebug() << v.size();
     a.exec();
 }

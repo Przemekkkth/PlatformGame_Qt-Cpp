@@ -56,7 +56,7 @@ void GameScene::drawTiles()
     float fTileOffsetY = (fOffsetY - (int)fOffsetY) * nTileHeight;
 
     // Draw visible tile map
-    for (int x = -1; x < nVisibleTilesX + 1; x++)
+    for (int x = -1; x < nVisibleTilesX + 2; x++)
     {
         for (int y = -1; y < nVisibleTilesY + 1; y++)
         {
