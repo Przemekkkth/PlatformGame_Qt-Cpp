@@ -14,7 +14,7 @@ GameScene::GameScene(QObject *parent)
     m_timer.start(int(1000.0f/Game::FPS));
     m_elapsedTimer.start();
 
-    setBackgroundBrush(Qt::cyan);
+    setBackgroundBrush(Game::BG_COLOR);
 }
 
 void GameScene::loop()
@@ -70,8 +70,8 @@ void GameScene::drawTiles()
                 //rItem->setRect(0,0, ((x + 1) * nTileWidth - fTileOffsetX - x * nTileWidth - fTileOffsetX), ((y + 1) * nTileHeight - fTileOffsetY - y * nTileHeight - fTileOffsetY));
                 rItem->setRect(0,0, nTileWidth, nTileHeight);
                 rItem->setPos((x * nTileWidth - fTileOffsetX), (y * nTileHeight - fTileOffsetY));
-                rItem->setBrush(QBrush(Qt::cyan));
-                rItem->setPen(QPen(Qt::cyan));
+                rItem->setBrush(Game::BG_COLOR);
+                rItem->setPen(Game::BG_COLOR);
                 //qDebug() << "rect " << rItem->boundingRect();
                 addItem(rItem);
             }

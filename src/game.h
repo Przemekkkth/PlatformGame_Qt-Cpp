@@ -61,6 +61,7 @@ public:
 
     constexpr static const int TILE_SIZE = 64;
 
+    constexpr static const QColor BG_COLOR = QColor(92, 148, 252);
     HeroAnim m_heroAnim;
 };
 
