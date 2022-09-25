@@ -13,6 +13,8 @@ GameScene::GameScene(QObject *parent)
     connect(&m_timer, &QTimer::timeout, this, &GameScene::loop);
     m_timer.start(int(1000.0f/Game::FPS));
     m_elapsedTimer.start();
+
+    setBackgroundBrush(Qt::cyan);
 }
 
 void GameScene::loop()
@@ -95,13 +97,31 @@ void GameScene::drawTiles()
                 break;
             case 'B': // Brick Block
                 //DrawPartialSprite(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY, spriteTiles, 0 * nTileWidth, 1 * nTileHeight, nTileWidth, nTileHeight);
+            {
+                QGraphicsPixmapItem* pItem = new QGraphicsPixmapItem();
+                pItem->setPixmap(QPixmap(Game::PATH_TO_BOX_PIXMAP).scaled(nTileWidth, nTileHeight));
+                pItem->setPos(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY);
+                addItem(pItem);
+            }
                 break;
             case '?': // Question Block
                 //DrawPartialSprite(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY, spriteTiles, 1 * nTileWidth, 1 * nTileHeight, nTileWidth, nTileHeight);
+            {
+                QGraphicsPixmapItem* pItem = new QGraphicsPixmapItem();
+                pItem->setPixmap(QPixmap(Game::PATH_TO_QUESTION_MARK_PIXMAP).scaled(nTileWidth, nTileHeight));
+                pItem->setPos(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY);
+                addItem(pItem);
+            }
                 break;
             case 'o': // Coin
                 //Fill(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY, (x + 1) * nTileWidth - fTileOffsetX, (y + 1) * nTileHeight - fTileOffsetY, PIXEL_SOLID, FG_CYAN);
                 //DrawPartialSprite(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY, spriteTiles, 3 * nTileWidth, 0 * nTileHeight, nTileWidth, nTileHeight);
+            {
+                QGraphicsPixmapItem* pItem = new QGraphicsPixmapItem();
+                pItem->setPixmap(QPixmap(Game::PATH_TO_COIN_PIXMAP).scaled(nTileWidth, nTileHeight));
+                pItem->setPos(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY);
+                addItem(pItem);
+            }
                 break;
             default:
                 //Fill(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY, (x + 1) * nTileWidth - fTileOffsetX, (y + 1) * nTileHeight - fTileOffsetY, PIXEL_SOLID, FG_BLACK);
@@ -115,12 +135,12 @@ void GameScene::drawTiles()
     //(fPlayerPosY - fOffsetY) * nTileWidth,
     //(fPlayerPosX - fOffsetX + 1.0f) * nTileWidth,
     //(fPlayerPosY - fOffsetY + 1.0f) * nTileHeight, PIXEL_SOLID, FG_GREEN);
-//    QGraphicsRectItem* rItem = new QGraphicsRectItem();
-//    rItem->setRect(0,0, ((m_game.fPlayerPosX - fOffsetX + 1.0f) * nTileWidth) - ((m_game.fPlayerPosX - fOffsetX) * nTileWidth),
-//                   ((m_game.fPlayerPosY - fOffsetY + 1.0f) * nTileHeight) - ((m_game.fPlayerPosY - fOffsetY) * nTileWidth));
-//    rItem->setPos((m_game.fPlayerPosX - fOffsetX) * nTileWidth, (m_game.fPlayerPosY - fOffsetY) * nTileWidth);
-//    rItem->setBrush(QBrush(Qt::green));
-//    rItem->setPen(QPen(Qt::red));
+    //    QGraphicsRectItem* rItem = new QGraphicsRectItem();
+    //    rItem->setRect(0,0, ((m_game.fPlayerPosX - fOffsetX + 1.0f) * nTileWidth) - ((m_game.fPlayerPosX - fOffsetX) * nTileWidth),
+    //                   ((m_game.fPlayerPosY - fOffsetY + 1.0f) * nTileHeight) - ((m_game.fPlayerPosY - fOffsetY) * nTileWidth));
+    //    rItem->setPos((m_game.fPlayerPosX - fOffsetX) * nTileWidth, (m_game.fPlayerPosY - fOffsetY) * nTileWidth);
+    //    rItem->setBrush(QBrush(Qt::green));
+    //    rItem->setPen(QPen(Qt::red));
     QGraphicsPixmapItem* pItem = new QGraphicsPixmapItem(m_game.m_heroAnim.currentPixmap().scaled(Game::TILE_SIZE, Game::TILE_SIZE));
     pItem->setPos((m_game.fPlayerPosX - fOffsetX) * nTileWidth, (m_game.fPlayerPosY - fOffsetY) * nTileWidth);
     addItem(pItem);

@@ -5,6 +5,9 @@
 const QString Game::PATH_TO_WOOD_PIXMAP = ":/res/wood.png";
 const QString Game::PATH_TO_ROCK_PIXMAP = ":/res/rock.png";
 const QString Game::PATH_TO_HERO_PIXMAP = ":/res/hero.png";
+const QString Game::PATH_TO_COIN_PIXMAP = ":/res/coin.png";
+const QString Game::PATH_TO_BOX_PIXMAP = ":/res/box.png";
+const QString Game::PATH_TO_QUESTION_MARK_PIXMAP = ":/res/question_mark.png";
 
 const QString Game::TITLE = "JUMPER";
 const QSize Game::RESOLUTION = QSize(1024, 768);
@@ -94,7 +97,7 @@ void Game::handleInput()
         {
             if (fPlayerVelY == 0)
             {
-                fPlayerVelY = -12.0f;
+                fPlayerVelY = -14.0f;
                 nDirModX = 1;
             }
         }
@@ -157,7 +160,7 @@ void Game::update()
 {
     handleInput();
     float fElapsedTime = 0.01f;
-    fPlayerVelY += 20.0f * fElapsedTime;
+    fPlayerVelY += 30.0f * fElapsedTime;
 
     // Drag
     if (bPlayerOnGround)

@@ -9,7 +9,7 @@ HeroAnim::HeroAnim(QObject *parent)
 {
     m_currentPixmap = m_pixmap.copy(0,0, Game::TILE_SIZE, Game::TILE_SIZE).scaled(64, 64);
     connect(&m_timer, &QTimer::timeout, this, &HeroAnim::updatePixmap);
-    m_timer.start(250);
+    m_timer.start(125);
 }
 
 QPixmap HeroAnim::currentPixmap() const

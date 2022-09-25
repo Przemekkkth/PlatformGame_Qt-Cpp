@@ -55,6 +55,9 @@ public:
     static const QString PATH_TO_WOOD_PIXMAP;
     static const QString PATH_TO_ROCK_PIXMAP;
     static const QString PATH_TO_HERO_PIXMAP;
+    static const QString PATH_TO_COIN_PIXMAP;
+    static const QString PATH_TO_BOX_PIXMAP;
+    static const QString PATH_TO_QUESTION_MARK_PIXMAP;
 
     constexpr static const int TILE_SIZE = 64;
 

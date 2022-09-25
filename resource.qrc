@@ -4,5 +4,8 @@
         <file>res/tiles.png</file>
         <file>res/wood.png</file>
         <file>res/rock.png</file>
+        <file>res/coin.png</file>
+        <file>res/box.png</file>
+        <file>res/question_mark.png</file>
     </qresource>
 </RCC>
