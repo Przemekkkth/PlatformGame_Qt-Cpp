@@ -182,18 +182,18 @@ void Game::setPressedCtrl(bool val)
 
 void Game::clampVelocities()
 {
-    if(isPressedCtrl() && fPlayerVelX > 10.0f)
+    if(isPressedCtrl() && fPlayerVelX > 13.0f)
     {
-        fPlayerVelX = 12.0f;
+        fPlayerVelX = 13.0f;
     }
     else if (fPlayerVelX > 10.0f)
     {
         fPlayerVelX = 10.0f;
     }
 
-    if(isPressedCtrl() && fPlayerVelX < -10.0f)
+    if(isPressedCtrl() && fPlayerVelX < -13.0f)
     {
-        fPlayerVelX = -12.0f;
+        fPlayerVelX = -13.0f;
     }
     else if (fPlayerVelX < -10.0f)
     {
@@ -223,6 +223,7 @@ void Game::update()
         fPlayerVelX += -3.0f * fPlayerVelX * fElapsedTime;
         if (fabs(fPlayerVelX) < 0.01f)
             fPlayerVelX = 0.0f;
+        //qDebug() << "X " << fPlayerVelX;
     }
 
     // Clamp velocities
