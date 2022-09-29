@@ -1,11 +1,7 @@
 <RCC>
     <qresource prefix="/">
-        <file>res/hero.png</file>
-        <file>res/tiles.png</file>
-        <file>res/wood.png</file>
-        <file>res/rock.png</file>
-        <file>res/coin.png</file>
-        <file>res/box.png</file>
-        <file>res/question_mark.png</file>
+        <file>res/sprites/hero.png</file>
+        <file>res/sprites/tiles.png</file>
+        <file>res/lvl/level1.txt</file>
     </qresource>
 </RCC>

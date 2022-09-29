@@ -64,6 +64,7 @@ public:
 
     QMap<QChar, QPixmap> m_tileMap;
     QMap<QChar, QPixmap> tileMap() const;
+    void loadLevel(QString pathToFile);
 };
 
 #endif // GAME_H
