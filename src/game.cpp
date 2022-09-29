@@ -5,12 +5,13 @@
 //
 const QString Game::PATH_TO_HERO_PIXMAP = ":/res/sprites/hero.png";
 const QString Game::PATH_TO_TILES_PIXMAP = ":/res/sprites/tiles.png";
+const float Game::PLAYER_VEL_Y_UP = -28.0f;
 
 const QString Game::TITLE = "JUMPER";
 const QSize Game::RESOLUTION = QSize(1366, 768);
 Game::Game()
     : m_isMoveLeft(false), m_isMoveRight(false), m_isMoveUp(false), m_isMoveDown(false),
-      m_isPressedSpace(false)
+      m_isCtrlPressed(false), m_isPressedSpace(false)
 {
     create();
 
@@ -74,21 +75,34 @@ void Game::handleInput()
 
         if (isMoveLeft())
         {
-            fPlayerVelX += (bPlayerOnGround ? -25.0f : -15.0f) * fElapsedTime;
+            if(!isPressedCtrl())
+            {
+                fPlayerVelX += (bPlayerOnGround ? -25.0f : -15.0f) * fElapsedTime;
+            }
+            else
+            {
+                fPlayerVelX += (bPlayerOnGround ? -45.0f : -35.0f) * fElapsedTime;
+            }
             nDirModY = 1;
         }
 
         if (isMoveRight())
         {
-            fPlayerVelX += (bPlayerOnGround ? 25.0f : 15.0f) * fElapsedTime;
-            nDirModY = 0;
+            if(!isPressedCtrl())
+            {
+                fPlayerVelX += (bPlayerOnGround ? 25.0f : 15.0f) * fElapsedTime;
+            }
+            else
+            {
+                fPlayerVelX += (bPlayerOnGround ? 45.0f : 35.0f) * fElapsedTime;
+            }nDirModY = 0;
         }
 
         if (isPressedSpace())
         {
             if (fPlayerVelY == 0)
             {
-                fPlayerVelY = -16.0f;
+                fPlayerVelY = -28.0f;
                 nDirModX = 1;
             }
         }
@@ -147,11 +161,52 @@ void Game::setPressedSpace(bool val)
     m_isPressedSpace = val;
 }
 
+bool Game::isPressedCtrl()
+{
+    return m_isCtrlPressed;
+}
+
+void Game::setPressedCtrl(bool val)
+{
+    m_isCtrlPressed = val;
+}
+
+void Game::clampVelocities()
+{
+    if(isPressedCtrl() && fPlayerVelX > 10.0f)
+    {
+        fPlayerVelX = 12.0f;
+    }
+    else if (fPlayerVelX > 10.0f)
+    {
+        fPlayerVelX = 10.0f;
+    }
+
+    if(isPressedCtrl() && fPlayerVelX < -10.0f)
+    {
+        fPlayerVelX = -12.0f;
+    }
+    else if (fPlayerVelX < -10.0f)
+    {
+        fPlayerVelX = -10.0f;
+    }
+
+    if (fPlayerVelY > 100.0f)
+    {
+        fPlayerVelY = 100.0f;
+    }
+
+    if (fPlayerVelY < -100.0f)
+    {
+        fPlayerVelY = -100.0f;
+    }
+}
+
 void Game::update()
 {
     handleInput();
     float fElapsedTime = 0.01f;
-    fPlayerVelY += 30.0f * fElapsedTime;
+    fPlayerVelY += 0.8f;
 
     // Drag
     if (bPlayerOnGround)
@@ -162,17 +217,7 @@ void Game::update()
     }
 
     // Clamp velocities
-    if (fPlayerVelX > 10.0f)
-        fPlayerVelX = 10.0f;
-
-    if (fPlayerVelX < -10.0f)
-        fPlayerVelX = -10.0f;
-
-    if (fPlayerVelY > 100.0f)
-        fPlayerVelY = 100.0f;
-
-    if (fPlayerVelY < -100.0f)
-        fPlayerVelY = -100.0f;
+    clampVelocities();
 
     // Calculate potential new position
     float fNewPlayerPosX = fPlayerPosX + fPlayerVelX * fElapsedTime;

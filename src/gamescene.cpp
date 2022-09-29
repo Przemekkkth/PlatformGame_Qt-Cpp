@@ -109,6 +109,9 @@ void GameScene::keyPressEvent(QKeyEvent *event)
         m_game.setPressedSpace(true);
     }
         break;
+    case Qt::Key_Control:
+        m_game.setPressedCtrl(true);
+        break;
     }
     QGraphicsScene::keyPressEvent(event);
 }
@@ -143,6 +146,11 @@ void GameScene::keyReleaseEvent(QKeyEvent *event)
     case Qt::Key_Space:
     {
         m_game.setPressedSpace(false);
+    }
+        break;
+    case Qt::Key_Control:
+    {
+        m_game.setPressedCtrl(false);
     }
         break;
     }

@@ -26,6 +26,8 @@ public:
     void setMoveDown(bool val);
     bool isPressedSpace();
     void setPressedSpace(bool val);
+    bool isPressedCtrl();
+    void setPressedCtrl(bool val);
 
     void update();
 
@@ -49,13 +51,14 @@ public:
     int nDirModX = 0;
     int nDirModY = 0;
 
-    bool m_isMoveLeft, m_isMoveRight, m_isMoveUp, m_isMoveDown;
+    bool m_isMoveLeft, m_isMoveRight, m_isMoveUp, m_isMoveDown, m_isCtrlPressed;
     bool m_isPressedSpace;
 
     constexpr static const int FPS = 60;
 
     static const QString PATH_TO_HERO_PIXMAP;
     static const QString PATH_TO_TILES_PIXMAP;
+    static const float PLAYER_VEL_Y_UP;
 
     constexpr static const int TILE_SIZE = 64;
 
@@ -65,6 +68,8 @@ public:
     QMap<QChar, QPixmap> m_tileMap;
     QMap<QChar, QPixmap> tileMap() const;
     void loadLevel(QString pathToFile);
+private:
+    void clampVelocities();
 };
 
 #endif // GAME_H
