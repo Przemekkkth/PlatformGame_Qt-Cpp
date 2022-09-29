@@ -81,7 +81,7 @@ void Game::handleInput()
             }
             else
             {
-                fPlayerVelX += (bPlayerOnGround ? -45.0f : -35.0f) * fElapsedTime;
+                fPlayerVelX += (bPlayerOnGround ? -150.0f : -135.0f) * fElapsedTime;
             }
             nDirModY = 1;
         }
@@ -94,7 +94,7 @@ void Game::handleInput()
             }
             else
             {
-                fPlayerVelX += (bPlayerOnGround ? 45.0f : 35.0f) * fElapsedTime;
+                fPlayerVelX += (bPlayerOnGround ? 150.0f : 135.0f) * fElapsedTime;
             }nDirModY = 0;
         }
 
@@ -182,20 +182,20 @@ void Game::setPressedCtrl(bool val)
 
 void Game::clampVelocities()
 {
-    if(isPressedCtrl() && fPlayerVelX > 13.0f)
+    if(isPressedCtrl() && fPlayerVelX > 12.0f)
     {
-        fPlayerVelX = 13.0f;
+        fPlayerVelX = 12.0f;
     }
-    else if (fPlayerVelX > 10.0f)
+    else if (!isPressedCtrl() && fPlayerVelX > 10.0f)
     {
         fPlayerVelX = 10.0f;
     }
 
-    if(isPressedCtrl() && fPlayerVelX < -13.0f)
+    if(isPressedCtrl() && fPlayerVelX < -12.0f)
     {
-        fPlayerVelX = -13.0f;
+        fPlayerVelX = -12.0f;
     }
-    else if (fPlayerVelX < -10.0f)
+    else if (!isPressedCtrl() && fPlayerVelX < -10.0f)
     {
         fPlayerVelX = -10.0f;
     }
