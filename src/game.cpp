@@ -9,6 +9,8 @@ const QString Game::PATH_TO_COIN_PIXMAP = ":/res/coin.png";
 const QString Game::PATH_TO_BOX_PIXMAP = ":/res/box.png";
 const QString Game::PATH_TO_QUESTION_MARK_PIXMAP = ":/res/question_mark.png";
 
+const QString Game::PATH_TO_TILES_PIXMAP = ":/res/tiles.png";
+
 const QString Game::TITLE = "JUMPER";
 const QSize Game::RESOLUTION = QSize(1366, 768);
 Game::Game()
@@ -16,28 +18,40 @@ Game::Game()
       m_isPressedSpace(false)
 {
     create();
+
+    int TILE_SIZE_PIXMAP = 32;
+    m_tileMap['B'] = QPixmap(spriteTiles->copy(0,0,TILE_SIZE_PIXMAP, TILE_SIZE_PIXMAP));                   //BLOCK
+    m_tileMap['N'] = QPixmap(spriteTiles->copy(TILE_SIZE_PIXMAP,0,TILE_SIZE_PIXMAP, TILE_SIZE_PIXMAP));           //BOX
+    m_tileMap['C'] = QPixmap(spriteTiles->copy(2*TILE_SIZE_PIXMAP,0,TILE_SIZE_PIXMAP, TILE_SIZE_PIXMAP));         //COIN
+    m_tileMap['P'] = QPixmap(spriteTiles->copy(3*TILE_SIZE_PIXMAP,0,TILE_SIZE_PIXMAP, TILE_SIZE_PIXMAP));         //PIPE00
+    m_tileMap['p'] = QPixmap(spriteTiles->copy(4*TILE_SIZE_PIXMAP,0,TILE_SIZE_PIXMAP, TILE_SIZE_PIXMAP));         //PIPE10
+    m_tileMap['R'] = QPixmap(spriteTiles->copy(3*TILE_SIZE_PIXMAP,TILE_SIZE_PIXMAP,TILE_SIZE_PIXMAP, TILE_SIZE_PIXMAP)); //PIPE01
+    m_tileMap['r'] = QPixmap(spriteTiles->copy(4*TILE_SIZE_PIXMAP,TILE_SIZE_PIXMAP,TILE_SIZE_PIXMAP, TILE_SIZE_PIXMAP)); //PIPE00
+    m_tileMap['?'] = QPixmap(spriteTiles->copy(5*TILE_SIZE_PIXMAP,0,TILE_SIZE_PIXMAP, TILE_SIZE_PIXMAP));         //QuestionMark
+    m_tileMap['#'] = QPixmap(spriteTiles->copy(6*TILE_SIZE_PIXMAP,0,TILE_SIZE_PIXMAP, TILE_SIZE_PIXMAP));         //Ground
+    m_tileMap['+'] = QPixmap(spriteTiles->copy(7*TILE_SIZE_PIXMAP,0,TILE_SIZE_PIXMAP, TILE_SIZE_PIXMAP));         //Wood
 }
 
 void Game::create()
 {
-//    nLevelWidth = 64;
-//    nLevelHeight = 16;
-//    sLevel += "................................................................";
-//    sLevel += "................................................................";
-//    sLevel += ".......ooooo....................................................";
-//    sLevel += "........ooo.....................................................";
-//    sLevel += ".......................########.................................";
-//    sLevel += ".....BB?BBBB?BB.......###..............#.#......................";
-//    sLevel += "....................###................#.#......................";
-//    sLevel += "...................####.........................................";
-//    sLevel += "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG.##############.....########";
-//    sLevel += "...................................#.#...............###........";
-//    sLevel += "........................############.#............###...........";
-//    sLevel += "........................#............#.........###..............";
-//    sLevel += "........................#.############......###.................";
-//    sLevel += "........................#................###....................";
-//    sLevel += "........................#################.......................";
-//    sLevel += "................................................................";
+    //    nLevelWidth = 64;
+    //    nLevelHeight = 16;
+    //    sLevel += "................................................................";
+    //    sLevel += "................................................................";
+    //    sLevel += ".......ooooo....................................................";
+    //    sLevel += "........ooo.....................................................";
+    //    sLevel += ".......................########.................................";
+    //    sLevel += ".....BB?BBBB?BB.......###..............#.#......................";
+    //    sLevel += "....................###................#.#......................";
+    //    sLevel += "...................####.........................................";
+    //    sLevel += "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG.##############.....########";
+    //    sLevel += "...................................#.#...............###........";
+    //    sLevel += "........................############.#............###...........";
+    //    sLevel += "........................#............#.........###..............";
+    //    sLevel += "........................#.############......###.................";
+    //    sLevel += "........................#................###....................";
+    //    sLevel += "........................#################.......................";
+    //    sLevel += "................................................................";
 
     nLevelWidth = 212;
     nLevelHeight = 14;
@@ -56,7 +70,7 @@ void Game::create()
     sLevel += "#################################################..###############..################################################################..##############################################################################";
     sLevel += "#################################################..###############..################################################################..##############################################################################";
 
-    spriteTiles = new QPixmap(":/res/tiles.png");
+    spriteTiles = new QPixmap(PATH_TO_TILES_PIXMAP);
     spriteHero  = new QPixmap(":/res/hero.png");
 }
 
@@ -267,4 +281,9 @@ void Game::update()
     fCameraPosY = fPlayerPosY;
 
 
+}
+
+QMap<QChar, QPixmap> Game::tileMap() const
+{
+    return m_tileMap;
 }

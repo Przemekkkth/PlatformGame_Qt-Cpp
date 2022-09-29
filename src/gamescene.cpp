@@ -26,7 +26,6 @@ void GameScene::loop()
     if( m_loopTime > m_loopSpeed)
     {
         m_loopTime -= m_loopSpeed;
-        //setBackgroundBrush(Qt::cyan);
         m_game.update();
         clear();
         drawTiles();
@@ -61,91 +60,21 @@ void GameScene::drawTiles()
         for (int y = -1; y < nVisibleTilesY + 1; y++)
         {
             QChar sTileID = m_game.getTile(x + fOffsetX, y + fOffsetY);
-            switch (sTileID.toLatin1())
-            {
-            case '.': // Sky
-                //Fill(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY, (x + 1) * nTileWidth - fTileOffsetX, (y + 1) * nTileHeight - fTileOffsetY, PIXEL_SOLID, FG_CYAN);
-            {
-                QGraphicsRectItem* rItem = new QGraphicsRectItem();
-                //rItem->setRect(0,0, ((x + 1) * nTileWidth - fTileOffsetX - x * nTileWidth - fTileOffsetX), ((y + 1) * nTileHeight - fTileOffsetY - y * nTileHeight - fTileOffsetY));
-                rItem->setRect(0,0, nTileWidth, nTileHeight);
-                rItem->setPos((x * nTileWidth - fTileOffsetX), (y * nTileHeight - fTileOffsetY));
-                rItem->setBrush(Game::BG_COLOR);
-                rItem->setPen(Game::BG_COLOR);
-                //qDebug() << "rect " << rItem->boundingRect();
-                addItem(rItem);
-            }
-                break;
-            case '#': // Solid Block
-                //Fill(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY, (x + 1) * nTileWidth - fTileOffsetX, (y + 1) * nTileHeight - fTileOffsetY, PIXEL_SOLID, FG_RED);
-                //DrawPartialSprite(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY, spriteTiles, 2 * nTileWidth, 0 * nTileHeight, nTileWidth, nTileHeight);
+            //check sTile in Game::m_mapTile if exist draw Pixmap
+            if(m_game.tileMap().contains(sTileID))
             {
                 QGraphicsPixmapItem* pItem = new QGraphicsPixmapItem();
-                pItem->setPixmap(QPixmap(Game::PATH_TO_ROCK_PIXMAP).scaled(nTileWidth, nTileHeight));
+                pItem->setPixmap(m_game.tileMap()[sTileID].scaled(nTileWidth, nTileHeight));
                 pItem->setPos(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY);
                 addItem(pItem);
-            }
-                break;
-            case 'G': // Ground Block
-                //DrawPartialSprite(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY, spriteTiles, 0 * nTileWidth, 0 * nTileHeight, nTileWidth, nTileHeight);
-            {
-                QGraphicsPixmapItem* pItem = new QGraphicsPixmapItem();
-                pItem->setPixmap(QPixmap(Game::PATH_TO_WOOD_PIXMAP).scaled(nTileWidth, nTileHeight));
-                pItem->setPos(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY);
-                addItem(pItem);
-            }
-                break;
-            case 'B': // Brick Block
-                //DrawPartialSprite(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY, spriteTiles, 0 * nTileWidth, 1 * nTileHeight, nTileWidth, nTileHeight);
-            {
-                QGraphicsPixmapItem* pItem = new QGraphicsPixmapItem();
-                pItem->setPixmap(QPixmap(Game::PATH_TO_BOX_PIXMAP).scaled(nTileWidth, nTileHeight));
-                pItem->setPos(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY);
-                addItem(pItem);
-            }
-                break;
-            case '?': // Question Block
-                //DrawPartialSprite(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY, spriteTiles, 1 * nTileWidth, 1 * nTileHeight, nTileWidth, nTileHeight);
-            {
-                QGraphicsPixmapItem* pItem = new QGraphicsPixmapItem();
-                pItem->setPixmap(QPixmap(Game::PATH_TO_QUESTION_MARK_PIXMAP).scaled(nTileWidth, nTileHeight));
-                pItem->setPos(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY);
-                addItem(pItem);
-            }
-                break;
-            case 'o': // Coin
-                //Fill(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY, (x + 1) * nTileWidth - fTileOffsetX, (y + 1) * nTileHeight - fTileOffsetY, PIXEL_SOLID, FG_CYAN);
-                //DrawPartialSprite(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY, spriteTiles, 3 * nTileWidth, 0 * nTileHeight, nTileWidth, nTileHeight);
-            {
-                QGraphicsPixmapItem* pItem = new QGraphicsPixmapItem();
-                pItem->setPixmap(QPixmap(Game::PATH_TO_COIN_PIXMAP).scaled(nTileWidth, nTileHeight));
-                pItem->setPos(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY);
-                addItem(pItem);
-            }
-                break;
-            default:
-                //Fill(x * nTileWidth - fTileOffsetX, y * nTileHeight - fTileOffsetY, (x + 1) * nTileWidth - fTileOffsetX, (y + 1) * nTileHeight - fTileOffsetY, PIXEL_SOLID, FG_BLACK);
-                break;
             }
         }
     }
 
     // Draw Player
-    //Fill((fPlayerPosX - fOffsetX) * nTileWidth,
-    //(fPlayerPosY - fOffsetY) * nTileWidth,
-    //(fPlayerPosX - fOffsetX + 1.0f) * nTileWidth,
-    //(fPlayerPosY - fOffsetY + 1.0f) * nTileHeight, PIXEL_SOLID, FG_GREEN);
-    //    QGraphicsRectItem* rItem = new QGraphicsRectItem();
-    //    rItem->setRect(0,0, ((m_game.fPlayerPosX - fOffsetX + 1.0f) * nTileWidth) - ((m_game.fPlayerPosX - fOffsetX) * nTileWidth),
-    //                   ((m_game.fPlayerPosY - fOffsetY + 1.0f) * nTileHeight) - ((m_game.fPlayerPosY - fOffsetY) * nTileWidth));
-    //    rItem->setPos((m_game.fPlayerPosX - fOffsetX) * nTileWidth, (m_game.fPlayerPosY - fOffsetY) * nTileWidth);
-    //    rItem->setBrush(QBrush(Qt::green));
-    //    rItem->setPen(QPen(Qt::red));
     QGraphicsPixmapItem* pItem = new QGraphicsPixmapItem(m_game.m_heroAnim.currentPixmap().scaled(Game::TILE_SIZE, Game::TILE_SIZE));
     pItem->setPos((m_game.fPlayerPosX - fOffsetX) * nTileWidth, (m_game.fPlayerPosY - fOffsetY) * nTileWidth);
     addItem(pItem);
-
-    //DrawPartialSprite((fPlayerPosX - fOffsetX) * nTileWidth, (fPlayerPosY - fOffsetY) * nTileWidth, spriteMan, nDirModX * nTileWidth, nDirModY * nTileHeight, nTileWidth, nTileHeight);
 }
 
 void GameScene::keyPressEvent(QKeyEvent *event)

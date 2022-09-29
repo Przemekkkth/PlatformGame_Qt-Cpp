@@ -4,6 +4,7 @@
 #include <QPixmap>
 #include <QSize>
 #include "heroanim.h"
+#include <QMap>
 
 class Game
 {
@@ -58,11 +59,15 @@ public:
     static const QString PATH_TO_COIN_PIXMAP;
     static const QString PATH_TO_BOX_PIXMAP;
     static const QString PATH_TO_QUESTION_MARK_PIXMAP;
+    static const QString PATH_TO_TILES_PIXMAP;
 
     constexpr static const int TILE_SIZE = 64;
 
     constexpr static const QColor BG_COLOR = QColor(92, 148, 252);
     HeroAnim m_heroAnim;
+
+    QMap<QChar, QPixmap> m_tileMap;
+    QMap<QChar, QPixmap> tileMap() const;
 };
 
 #endif // GAME_H
