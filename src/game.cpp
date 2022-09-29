@@ -222,8 +222,9 @@ void Game::update()
     {
         fPlayerVelX += -3.0f * fPlayerVelX * fElapsedTime;
         if (fabs(fPlayerVelX) < 0.01f)
+        {
             fPlayerVelX = 0.0f;
-        //qDebug() << "X " << fPlayerVelX;
+        }
     }
 
     // Clamp velocities
@@ -249,7 +250,9 @@ void Game::update()
     // Check for Collision
     if (fPlayerVelX <= 0) // Moving Left
     {
-        if (getTile(fNewPlayerPosX + 0.0f, fPlayerPosY + 0.0f) != '.' || getTile(fNewPlayerPosX + 0.0f, fPlayerPosY + 0.9f) != '.')
+        if (getTile(fNewPlayerPosX + 0.0f, fPlayerPosY + 0.0f) != '.'
+                ||
+            getTile(fNewPlayerPosX + 0.0f, fPlayerPosY + 0.9f) != '.')
         {
             fNewPlayerPosX = (int)fNewPlayerPosX + 1;
             fPlayerVelX = 0;
@@ -272,7 +275,7 @@ void Game::update()
         if (getTile(fNewPlayerPosX + 0.0f, fNewPlayerPosY) != '.' || getTile(fNewPlayerPosX + 0.9f, fNewPlayerPosY) != '.')
         {
             fNewPlayerPosY = (int)fNewPlayerPosY + 1;
-            fPlayerVelY = 0;
+            fPlayerVelY = 0.1;
         }
     }
     else // Moving Down
