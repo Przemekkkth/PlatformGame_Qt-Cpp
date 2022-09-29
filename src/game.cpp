@@ -106,6 +106,15 @@ void Game::handleInput()
                 nDirModX = 1;
             }
         }
+        else
+        {
+            if (fPlayerVelY != 0)
+            {
+                if(fPlayerVelY < 0.0f)
+                    fPlayerVelY = 0.0f;
+                nDirModX = 0;
+            }
+        }
     }
 }
 
