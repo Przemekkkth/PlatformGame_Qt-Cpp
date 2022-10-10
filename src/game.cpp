@@ -95,7 +95,8 @@ void Game::handleInput()
             else
             {
                 fPlayerVelX += (bPlayerOnGround ? 150.0f : 135.0f) * fElapsedTime;
-            }nDirModY = 0;
+            }
+            nDirModY = 0;
         }
 
         if (isPressedSpace())

@@ -37,7 +37,7 @@ public:
     int nLevelWidth, nLevelHeight;
 
     float fPlayerPosX = 1.0f;
-    float fPlayerPosY = 1.0f;
+    float fPlayerPosY = 13.0f;
     float fPlayerVelX = 0.0f;
     float fPlayerVelY = 0.0f;
     bool bPlayerOnGround = false;
