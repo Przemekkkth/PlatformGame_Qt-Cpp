@@ -5,6 +5,6 @@ int main(int argc, char **argv)
     QApplication a(argc, argv);
     View v;
     v.showFullScreen();
-    qDebug() << v.size();
+    v.setWindowTitle("Platform Game");
     a.exec();
 }
