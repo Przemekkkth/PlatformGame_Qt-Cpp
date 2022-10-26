@@ -16,5 +16,6 @@ qmake && make
 ```
 
 ## Addons
-* [Qt] (https://www.qt.io/) - Cross-Platform software for embedded & desktop
-* [Github] (https://github.com/OneLoneCoder/Javidx9/blob/master/ConsoleGameEngine/SmallerProjects/OneLoneCoder_PlatformGame1.cpp) - inspiration
+* [Qt](https://www.qt.io/) - Cross-Platform software for embedded & desktop
+* [Github](https://github.com/OneLoneCoder/Javidx9/blob/master/ConsoleGameEngine/SmallerProjects/OneLoneCoder_PlatformGame1.cpp) - inspiration
+* [YT](https://youtu.be/6Kq-WN513BA) - gameplay
