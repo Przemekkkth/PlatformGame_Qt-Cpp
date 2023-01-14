@@ -19,3 +19,4 @@ qmake && make
 * [Qt](https://www.qt.io/) - Cross-Platform software for embedded & desktop
 * [Github](https://github.com/OneLoneCoder/Javidx9/blob/master/ConsoleGameEngine/SmallerProjects/OneLoneCoder_PlatformGame1.cpp) - inspiration
 * [YT](https://youtu.be/6Kq-WN513BA) - gameplay
+* [Play online](https://przemekkkth.github.io/platformgame/index.html) - game hosted on GitHub
